@@ -188,6 +188,8 @@ html, body {
 
 .icon--heart { animation: pulse 2.6s ease-in-out infinite; }
 
+.icon--gift { width: 42px; height: 42px; }
+
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50%      { transform: scale(1.12); }
@@ -255,16 +257,16 @@ html, body {
 .info-row {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   font-size: 1.05rem;
-  margin: 0 0 18px;
+  margin: 0 0 18px 22px;
   text-align: left;
 }
 
 .info-row .icon-badge {
   flex-shrink: 0;
-  width: 38px;
-  height: 38px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: var(--blue-pale);
   border: 1px solid var(--blue-soft);
@@ -273,7 +275,7 @@ html, body {
   justify-content: center;
 }
 
-.info-row .icon { width: 19px; height: 19px; stroke: var(--blue-deep); }
+.info-row .icon { width: 24px; height: 24px; stroke: var(--blue-deep); }
 
 .info-row .info-text {
   display: block;
@@ -372,14 +374,20 @@ html, body {
 .carousel-track {
   display: flex;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: var(--shadow);
 }
 
 .slide {
   flex: 0 0 100%;
-  aspect-ratio: 4 / 5;
+  width: 100%;
+  aspect-ratio: 3 / 4.4;
+  object-fit: cover;
+  display: block;
   transition: transform 0.4s ease;
+  border: 6px solid var(--white);
+  border-bottom-width: 12px;
+  box-sizing: border-box;
 }
 
 .slide--placeholder {
@@ -522,6 +530,78 @@ html, body {
   color: var(--text-soft);
   cursor: pointer;
   line-height: 1;
+}
+
+/* ---------- modal de bienvenida (entrar con/sin música) ---------- */
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(160deg, var(--blue-pale), var(--cream));
+}
+
+.welcome-card {
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  background: var(--white);
+  border-radius: 24px;
+  padding: 40px 26px 32px;
+  box-shadow: var(--shadow);
+}
+
+.welcome-title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 3.2rem;
+  line-height: 0.9;
+  color: var(--blue-mid);
+  margin: 4px 0 14px;
+}
+
+.welcome-note {
+  margin: 0 0 22px;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--text-soft);
+}
+
+.welcome-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.welcome-actions .btn { width: 100%; }
+
+.welcome-actions .btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ---------- reproductor de música flotante ---------- */
+.music-player {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 25;
+}
+
+.music-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--blue-mid);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 /* ---------- accesibilidad: reducir movimiento ---------- */
