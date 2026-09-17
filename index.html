@@ -11,6 +11,37 @@
 </head>
 <body>
 
+<!-- ===================== MODAL DE BIENVENIDA (con/sin música) ===================== -->
+<div id="welcomeModal" class="welcome-overlay">
+  <div class="welcome-card">
+    <p class="eyebrow-icon">
+      <svg class="icon icon--heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.5 1.7 5 5.1 4.2 7.3 3.7 9.6 4.7 12 7.6c2.4-2.9 4.7-3.9 6.9-3.4 3.4.8 4.7 4.3 3.1 7.7C19.5 16.4 12 21 12 21z"/></svg>
+    </p>
+    <p class="pretitle">Te invitamos a</p>
+    <!-- EDITAR: si quieres, agrega aquí el nombre de la mamá/bebé -->
+    <h1 class="welcome-title">Baby Shower</h1>
+    <p class="welcome-note">La música de fondo es parte de la experiencia</p>
+    <div class="welcome-actions">
+      <button id="enterWithMusic" class="btn btn--solid" disabled>
+        <span id="enterWithMusicLabel">Cargando música...</span>
+      </button>
+      <button id="enterWithoutMusic" class="btn btn--outline">Ingresar sin música</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reproductor de música de fondo (botón flotante para pausar/reanudar) -->
+<div id="musicPlayer" class="music-player" style="display:none;">
+  <button id="musicToggle" class="music-toggle" title="Reproducir/Pausar música">
+    <svg id="volumeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="#ffffff" stroke="#4d7aa8" stroke-width="1"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.08" stroke="#ffffff" stroke-width="2"></path>
+      <circle cx="6.5" cy="12" r="1" fill="#cba667"/>
+    </svg>
+  </button>
+  <div id="youtube-player" style="position:absolute; top:-9999px; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none;"></div>
+</div>
+
 <!-- Puntos de navegación lateral (se activan con JS al hacer scroll) -->
 <nav class="dots" id="dots">
   <button class="dot active" data-target="hero" aria-label="Ir a Bienvenida"></button>
@@ -77,13 +108,6 @@
           <!-- EDITAR: fecha y hora reales del evento -->
           <span class="info-text">[Día], [Fecha]<span class="info-line-2">[Hora] p.m.</span></span>
         </p>
-        <p class="info-row">
-          <span class="icon-badge">
-            <svg class="icon icon--pin" viewBox="0 0 24 24"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-          </span>
-          <!-- EDITAR: lugar real del evento -->
-          <span class="info-text">[Nombre del salón]<span class="info-line-2">[Ciudad, sector]</span></span>
-        </p>
       </div>
 
       <!-- EDITAR: reemplazar # por el link real de Google Maps -->
@@ -106,19 +130,13 @@
 
       <div class="carousel" id="carousel">
         <div class="carousel-track" id="carouselTrack">
-          <!-- EDITAR: reemplazar cada .slide por una foto real (<img>) -->
-          <div class="slide slide--placeholder">
-            <svg class="icon icon--camera-lg" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="3.5"/></svg>
-            <span>Foto 1</span>
-          </div>
-          <div class="slide slide--placeholder">
-            <svg class="icon icon--camera-lg" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="3.5"/></svg>
-            <span>Foto 2</span>
-          </div>
-          <div class="slide slide--placeholder">
-            <svg class="icon icon--camera-lg" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="3.5"/></svg>
-            <span>Foto 3</span>
-          </div>
+          <!-- Fotos reales: foto1.jpg a foto6.jpg, ubicadas junto a index.html, style.css y script.js -->
+          <img class="slide" src="foto1.jpg" alt="Foto 1">
+          <img class="slide" src="foto2.jpg" alt="Foto 2">
+          <img class="slide" src="foto3.jpg" alt="Foto 3">
+          <img class="slide" src="foto4.jpg" alt="Foto 4">
+          <img class="slide" src="foto5.jpg" alt="Foto 5">
+          <img class="slide" src="foto6.jpg" alt="Foto 6">
         </div>
 
         <button class="carousel-arrow carousel-arrow--prev" id="prevSlide" aria-label="Foto anterior">
@@ -181,8 +199,7 @@
       <p class="section-subtitle">Nos encantará contar contigo<br>en este día tan especial</p>
 
       <div class="rsvp-buttons">
-        <button class="btn btn--solid" id="rsvpYes" data-choice="yes">¡Sí asistiré!</button>
-        <button class="btn btn--outline" id="rsvpNo" data-choice="no">No podré ir</button>
+        <button class="btn btn--solid" id="rsvpYes" data-choice="yes">Confirmar asistencia</button>
       </div>
 
       <p class="rsvp-feedback" id="rsvpFeedback" aria-live="polite"></p>
