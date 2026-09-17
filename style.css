@@ -1,0 +1,537 @@
+/* =========================================================
+   Invitación Baby Shower — estilos mínimos.
+   Todo el diseño visual vive en las imágenes de /assets;
+   aquí solo posicionamos texto, botones e iconos encima,
+   dentro de las zonas en blanco que ya trae cada imagen.
+   ========================================================= */
+
+:root {
+  --blue-deep: #4d7aa8;
+  --blue-mid: #6fa0d4;
+  --blue-soft: #bcd6ee;
+  --blue-pale: #e7f1fb;
+  --cream: #fbf5e8;
+  --gold: #cba667;
+  --text: #4c688a;
+  --text-soft: #7c93ac;
+  --white: #ffffff;
+  --shadow: 0 10px 24px rgba(77, 122, 168, 0.18);
+  --font-script: 'Alex Brush', cursive;
+  --font-serif: 'Playfair Display', serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #dfeaf5;
+  font-family: var(--font-serif);
+  color: var(--text);
+}
+
+.invite {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--cream);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- estructura de cada sección ---------- */
+.panel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+}
+
+/* Solapamos cada sección con la anterior y la apilamos con
+   z-index descendente: la de arriba se desvanece (ver .bg más abajo)
+   y dentro de ese desvanecido va asomando la sección siguiente,
+   sin línea de corte entre una imagen y otra. */
+.panel + .panel { margin-top: -40px; }
+
+#hero       { z-index: 6; }
+#countdown  { z-index: 5; }
+#gallery    { z-index: 4; }
+#gifts      { z-index: 3; }
+#dresscode  { z-index: 2; }
+#rsvp       { z-index: 1; }
+
+.panel .bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - 70px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - 70px),
+    transparent 100%
+  );
+}
+
+/* La última sección no necesita desvanecerse: no hay nada debajo. */
+#rsvp .bg {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* Caja de contenido genérica: cada sección define su propia
+   zona (top/bottom) según el espacio en blanco real de su imagen */
+.content {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* -------- zonas medidas en cada imagen (en % de la altura) -------- */
+#hero-content              { top: 8%;  bottom: 41%; justify-content: center; gap: 2px; }
+#countdown-content         { top: 7%;  bottom: 16%; justify-content: flex-start; padding-top: 3%; }
+#gallery-content            { top: 3%;  bottom: 13%; justify-content: flex-start; padding-top: 2%; }
+#gifts-content               { top: 5%;  bottom: 58%; justify-content: center; }
+#dresscode-content-top       { top: 4%;  bottom: 49%; justify-content: center; }
+#dresscode-content-bottom    { top: 61%; bottom: 15%; justify-content: center; }
+#rsvp-content                 { top: 5%;  bottom: 18%; justify-content: center; }
+
+/* ---------- tipografía ---------- */
+.pretitle {
+  margin: 0;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+
+.script-title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 4.4rem;
+  line-height: 0.85;
+  color: var(--blue-mid);
+  margin: 2px 0 6px;
+}
+
+.tagline {
+  margin: 0;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-soft);
+  line-height: 1.35;
+}
+
+.welcome-msg,
+.final-msg {
+  font-family: var(--font-script);
+  font-size: 1.7rem;
+  line-height: 1.2;
+  color: var(--blue-deep);
+  margin: 12px 0 0;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin: 8px 0 4px;
+  line-height: 1.15;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-soft);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin: 0 0 6px;
+}
+
+/* ---------- icono decorativo superior ---------- */
+.eyebrow-icon { margin: 0 0 6px; }
+
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: var(--blue-mid);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon--heart,
+.icon--gift,
+.icon--hanger,
+.icon--envelope,
+.icon--camera { fill: var(--blue-soft); stroke: var(--blue-deep); }
+
+.icon--heart { animation: pulse 2.6s ease-in-out infinite; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.12); }
+}
+
+/* ---------- ornamento divisor (conteo) ---------- */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 78%;
+  margin: 6px 0 16px;
+}
+
+.ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue-soft), transparent);
+}
+
+.icon--heart-tiny {
+  width: 14px;
+  height: 14px;
+  fill: var(--blue-mid);
+  stroke: none;
+  flex-shrink: 0;
+}
+
+/* ---------- contador ---------- */
+.timer {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0 4px;
+}
+
+.timer-unit {
+  background: linear-gradient(160deg, var(--white), var(--blue-pale));
+  border: 1px solid var(--blue-soft);
+  border-radius: 14px;
+  padding: 10px 6px 8px;
+  min-width: 56px;
+  box-shadow: 0 6px 14px rgba(111, 160, 212, 0.22);
+}
+
+.timer-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  line-height: 1;
+}
+
+.timer-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  color: var(--text-soft);
+  font-style: italic;
+}
+
+.event-info { margin-bottom: 18px; width: 100%; }
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.05rem;
+  margin: 0 0 18px;
+  text-align: left;
+}
+
+.info-row .icon-badge {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-row .icon { width: 19px; height: 19px; stroke: var(--blue-deep); }
+
+.info-row .info-text {
+  display: block;
+  line-height: 1.55;
+  font-family: var(--font-serif);
+  color: var(--text);
+}
+
+.info-row .info-text .info-line-2 {
+  display: block;
+  color: var(--text-soft);
+  font-size: 0.92em;
+  margin-top: 2px;
+}
+
+/* ---------- botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 12px 22px;
+  border-radius: 30px;
+  border: 2px solid var(--blue-mid);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.btn:active { transform: scale(0.96); }
+
+.btn--solid {
+  background: var(--blue-mid);
+  color: var(--white);
+}
+
+.btn--solid .icon,
+.btn--solid .icon path { stroke: var(--white); fill: none; }
+
+.btn--outline {
+  background: transparent;
+  color: var(--blue-deep);
+}
+
+.rsvp-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 78%;
+  margin: 6px 0 12px;
+}
+
+.rsvp-buttons .btn { width: 100%; }
+
+.btn.is-selected {
+  background: var(--blue-deep);
+  border-color: var(--blue-deep);
+  color: var(--white);
+}
+
+.rsvp-feedback {
+  min-height: 1.2em;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--blue-deep);
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+/* ---------- paleta dress code ---------- */
+.palette {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* ---------- carrusel ---------- */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 8px;
+}
+
+.carousel-track {
+  display: flex;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.slide {
+  flex: 0 0 100%;
+  aspect-ratio: 4 / 5;
+  transition: transform 0.4s ease;
+}
+
+.slide--placeholder {
+  background: linear-gradient(160deg, var(--blue-soft), var(--white));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--blue-deep);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.icon--camera-lg {
+  width: 40px;
+  height: 40px;
+  stroke: var(--blue-deep);
+  fill: var(--white);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.carousel-arrow svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--blue-deep);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.carousel-arrow--prev { left: -14px; }
+.carousel-arrow--next { right: -14px; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.carousel-dots .cdot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.carousel-dots .cdot.active { background: var(--blue-deep); }
+
+/* ---------- navegación lateral por puntos ---------- */
+.dots {
+  position: fixed;
+  right: max(10px, calc(50% - 240px + 10px));
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 20;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--blue-deep);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.dot.active { background: var(--blue-deep); }
+
+/* ---------- modal ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(61, 89, 119, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  padding: 20px;
+}
+
+.modal.is-open { display: flex; }
+
+.modal-card {
+  position: relative;
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 28px 24px;
+  max-width: 340px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  text-align: left;
+  font-family: var(--font-serif);
+}
+
+.modal-card h3 {
+  color: var(--blue-deep);
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.gift-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--text-soft);
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ---------- accesibilidad: reducir movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .icon--heart { animation: none; }
+  .btn, .slide { transition: none; }
+}
+
+@media (max-width: 380px) {
+  .script-title { font-size: 3.6rem; }
+  .timer-unit { min-width: 48px; padding: 8px 4px 6px; }
+  .timer-num { font-size: 1.4rem; }
+}

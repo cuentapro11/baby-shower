@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shower — Invitación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Puntos de navegación lateral (se activan con JS al hacer scroll) -->
+<nav class="dots" id="dots">
+  <button class="dot active" data-target="hero" aria-label="Ir a Bienvenida"></button>
+  <button class="dot" data-target="countdown" aria-label="Ir a Conteo regresivo"></button>
+  <button class="dot" data-target="gallery" aria-label="Ir a Galería"></button>
+  <button class="dot" data-target="gifts" aria-label="Ir a Regalos"></button>
+  <button class="dot" data-target="dresscode" aria-label="Ir a Dress Code"></button>
+  <button class="dot" data-target="rsvp" aria-label="Ir a Confirmación"></button>
+</nav>
+
+<main class="invite">
+
+  <!-- ===================== 1. BIENVENIDA ===================== -->
+  <section class="panel" id="hero">
+    <img class="bg" src="assets/hero.webp" alt="">
+    <div class="content" id="hero-content">
+      <p class="eyebrow-icon">
+        <!-- icono corazón, coloreado y animado por CSS -->
+        <svg class="icon icon--heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.5 1.7 5 5.1 4.2 7.3 3.7 9.6 4.7 12 7.6c2.4-2.9 4.7-3.9 6.9-3.4 3.4.8 4.7 4.3 3.1 7.7C19.5 16.4 12 21 12 21z"/></svg>
+      </p>
+      <p class="pretitle">Te invitamos a mi</p>
+      <h1 class="script-title">Baby Shower</h1>
+      <p class="tagline">Un nuevo capítulo<br>lleno de amor</p>
+      <p class="welcome-msg">Acompáñanos a celebrar<br>la llegada de nuestro bebé</p>
+    </div>
+  </section>
+
+  <!-- ===================== 2. CONTEO REGRESIVO ===================== -->
+  <section class="panel" id="countdown">
+    <img class="bg" src="assets/countdown.webp" alt="">
+    <div class="content" id="countdown-content">
+      <h2 class="card-title">Faltan</h2>
+
+      <div class="timer" id="timer">
+        <div class="timer-unit">
+          <span class="timer-num" id="t-days">00</span>
+          <span class="timer-label">Días</span>
+        </div>
+        <div class="timer-unit">
+          <span class="timer-num" id="t-hours">00</span>
+          <span class="timer-label">Horas</span>
+        </div>
+        <div class="timer-unit">
+          <span class="timer-num" id="t-min">00</span>
+          <span class="timer-label">Minutos</span>
+        </div>
+        <div class="timer-unit">
+          <span class="timer-num" id="t-sec">00</span>
+          <span class="timer-label">Segundos</span>
+        </div>
+      </div>
+
+      <div class="ornament" aria-hidden="true">
+        <span class="ornament-line"></span>
+        <svg class="icon icon--heart-tiny" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.5 1.7 5 5.1 4.2 7.3 3.7 9.6 4.7 12 7.6c2.4-2.9 4.7-3.9 6.9-3.4 3.4.8 4.7 4.3 3.1 7.7C19.5 16.4 12 21 12 21z"/></svg>
+        <span class="ornament-line"></span>
+      </div>
+
+      <div class="event-info">
+        <p class="info-row">
+          <span class="icon-badge">
+            <svg class="icon icon--calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+          </span>
+          <!-- EDITAR: fecha y hora reales del evento -->
+          <span class="info-text">[Día], [Fecha]<span class="info-line-2">[Hora] p.m.</span></span>
+        </p>
+        <p class="info-row">
+          <span class="icon-badge">
+            <svg class="icon icon--pin" viewBox="0 0 24 24"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          </span>
+          <!-- EDITAR: lugar real del evento -->
+          <span class="info-text">[Nombre del salón]<span class="info-line-2">[Ciudad, sector]</span></span>
+        </p>
+      </div>
+
+      <!-- EDITAR: reemplazar # por el link real de Google Maps -->
+      <a href="#" id="maps-link" class="btn btn--solid" target="_blank" rel="noopener">
+        <svg class="icon icon--pin-sm" viewBox="0 0 24 24"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        Ver en Google Maps
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== 3. GALERÍA / CARRUSEL ===================== -->
+  <section class="panel" id="gallery">
+    <img class="bg" src="assets/gallery.webp" alt="">
+    <div class="content" id="gallery-content">
+      <p class="eyebrow-icon">
+        <svg class="icon icon--camera" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="3.5"/></svg>
+      </p>
+      <h2 class="section-title">Galería</h2>
+      <p class="section-subtitle">Pequeños momentos,<br>grandes recuerdos</p>
+
+      <div class="carousel" id="carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- EDITAR: reemplazar cada .slide por una foto real (<img>) -->
+          <div class="slide slide--placeholder">
+            <svg class="icon icon--camera-lg" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="3.5"/></svg>
+            <span>Foto 1</span>
+          </div>
+          <div class="slide slide--placeholder">
+            <svg class="icon icon--camera-lg" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="3.5"/></svg>
+            <span>Foto 2</span>
+          </div>
+          <div class="slide slide--placeholder">
+            <svg class="icon icon--camera-lg" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="3.5"/></svg>
+            <span>Foto 3</span>
+          </div>
+        </div>
+
+        <button class="carousel-arrow carousel-arrow--prev" id="prevSlide" aria-label="Foto anterior">
+          <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button class="carousel-arrow carousel-arrow--next" id="nextSlide" aria-label="Foto siguiente">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. REGALOS ===================== -->
+  <section class="panel" id="gifts">
+    <img class="bg" src="assets/gifts.webp" alt="">
+    <div class="content" id="gifts-content">
+      <p class="eyebrow-icon">
+        <svg class="icon icon--gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="4"/><rect x="5" y="13" width="14" height="8"/><path d="M12 9v12M12 9c-1.5-4-6-4-6-1.5S9 9 12 9zM12 9c1.5-4 6-4 6-1.5S15 9 12 9z"/></svg>
+      </p>
+      <h2 class="section-title">Regalos</h2>
+      <p class="section-subtitle">Tu presencia es el mejor regalo,<br>pero si deseas tener un detalle<br>para nuestro bebé...</p>
+      <button class="btn btn--solid" id="giftBtn">
+        Ver ideas de regalos
+        <svg class="icon icon--heart-sm" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.5 1.7 5 5.1 4.2 7.3 3.7 9.6 4.7 12 7.6c2.4-2.9 4.7-3.9 6.9-3.4 3.4.8 4.7 4.3 3.1 7.7C19.5 16.4 12 21 12 21z"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== 5. DRESS CODE ===================== -->
+  <section class="panel" id="dresscode">
+    <img class="bg" src="assets/dresscode.webp" alt="">
+    <div class="content" id="dresscode-content-top">
+      <p class="eyebrow-icon">
+        <svg class="icon icon--hanger" viewBox="0 0 24 24"><path d="M12 3a2 2 0 0 1 2 2c0 .9-.6 1.6-1.4 1.9L12 9l-.6-2.1C10.6 6.6 10 5.9 10 5a2 2 0 0 1 2-2z"/><path d="M12 9l9 6a2 2 0 0 1-1.1 3.6H4.1A2 2 0 0 1 3 14.9z"/></svg>
+      </p>
+      <h2 class="section-title">Dress Code</h2>
+      <p class="section-subtitle">Tonos suaves</p>
+      <div class="palette">
+        <span class="swatch" style="--c:#8fb7dd"></span>
+        <span class="swatch" style="--c:#bcd6ee"></span>
+        <span class="swatch" style="--c:#e3d3b3"></span>
+        <span class="swatch" style="--c:#ecdfc7"></span>
+      </div>
+    </div>
+    <div class="content" id="dresscode-content-bottom">
+      <p class="welcome-msg">¡Ven cómodo y<br>con tu mejor sonrisa!</p>
+    </div>
+  </section>
+
+  <!-- ===================== 6. CONFIRMACIÓN + MENSAJE FINAL ===================== -->
+  <section class="panel" id="rsvp">
+    <img class="bg" src="assets/rsvp.webp" alt="">
+    <div class="content" id="rsvp-content">
+      <p class="eyebrow-icon">
+        <svg class="icon icon--envelope" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </p>
+      <h2 class="section-title">Confirma tu<br>asistencia</h2>
+      <p class="section-subtitle">Nos encantará contar contigo<br>en este día tan especial</p>
+
+      <div class="rsvp-buttons">
+        <button class="btn btn--solid" id="rsvpYes" data-choice="yes">¡Sí asistiré!</button>
+        <button class="btn btn--outline" id="rsvpNo" data-choice="no">No podré ir</button>
+      </div>
+
+      <p class="rsvp-feedback" id="rsvpFeedback" aria-live="polite"></p>
+
+      <p class="final-msg">Tu compañía hace este<br>momento aún más especial</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== MODAL: IDEAS DE REGALOS ===================== -->
+<div class="modal" id="giftModal">
+  <div class="modal-card">
+    <button class="modal-close" id="closeGiftModal" aria-label="Cerrar">&times;</button>
+    <h3>Ideas de regalos</h3>
+    <!-- EDITAR: reemplazar con la lista/mesa de regalos real -->
+    <ul class="gift-list">
+      <li>Pañales talla RN y 1</li>
+      <li>Toallitas húmedas</li>
+      <li>Ropita 0-3 meses</li>
+      <li>Artículos de higiene para bebé</li>
+    </ul>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
