@@ -100,7 +100,7 @@ html, body {
 
 /* -------- zonas medidas en cada imagen (en % de la altura) -------- */
 #hero-content              { top: 8%;  bottom: 41%; justify-content: center; gap: 2px; }
-#countdown-content         { top: 7%;  bottom: 29%; justify-content: flex-start; padding-top: 3%; }
+#countdown-content         { top: 7%;  bottom: 38%; justify-content: flex-start; padding-top: 3%; }
 #gallery-content            { top: 3%;  bottom: 13%; justify-content: flex-start; padding-top: 2%; }
 #gifts-content               { top: 5%;  bottom: 58%; justify-content: center; }
 #dresscode-content-top       { top: 4%;  bottom: 49%; justify-content: center; }
