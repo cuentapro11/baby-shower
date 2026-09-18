@@ -190,6 +190,18 @@ html, body {
 
 .icon--gift { width: 42px; height: 42px; }
 
+.icon-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+#dresscode-content-top .icon-img {
+  width: 92px;
+  height: 92px;
+}
+
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50%      { transform: scale(1.12); }
@@ -373,18 +385,22 @@ html, body {
   margin-top: 8px;
 }
 
-.carousel-track {
-  display: flex;
+.carousel-viewport {
   overflow: hidden;
   border-radius: 14px;
   box-shadow: var(--shadow);
+}
+
+.carousel-track {
+  display: flex;
 }
 
 .slide {
   flex: 0 0 100%;
   width: 100%;
   aspect-ratio: 3 / 4.4;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--blue-pale);
   display: block;
   transition: transform 0.4s ease;
   border: 6px solid var(--white);
@@ -550,10 +566,7 @@ html, body {
   max-width: 320px;
   width: 100%;
   text-align: center;
-  background: var(--white);
-  border-radius: 24px;
-  padding: 40px 26px 32px;
-  box-shadow: var(--shadow);
+  padding: 0 12px;
 }
 
 .welcome-title {

@@ -246,7 +246,7 @@ function setupCarousel() {
     const dot = document.createElement("button");
     dot.className = "cdot" + (i === 0 ? " active" : "");
     dot.setAttribute("aria-label", "Ir a foto " + (i + 1));
-    dot.addEventListener("click", () => goTo(i));
+    dot.addEventListener("click", () => { goTo(i); restartAutoplay(); });
     dotsWrap.appendChild(dot);
   });
 
@@ -262,8 +262,22 @@ function setupCarousel() {
     update();
   }
 
-  prevBtn.addEventListener("click", () => goTo(current - 1));
-  nextBtn.addEventListener("click", () => goTo(current + 1));
+  // avance automático cada 2.5s (se reinicia si el usuario interactúa)
+  let autoplayId = null;
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayId = setInterval(() => goTo(current + 1), 2500);
+  }
+  function stopAutoplay() {
+    if (autoplayId) clearInterval(autoplayId);
+  }
+  function restartAutoplay() {
+    startAutoplay();
+  }
+  startAutoplay();
+
+  prevBtn.addEventListener("click", () => { goTo(current - 1); restartAutoplay(); });
+  nextBtn.addEventListener("click", () => { goTo(current + 1); restartAutoplay(); });
 
   // deslizar con el dedo (touch) en móvil
   let startX = 0;
@@ -272,8 +286,8 @@ function setupCarousel() {
   });
   track.addEventListener("touchend", (e) => {
     const diff = e.changedTouches[0].clientX - startX;
-    if (diff > 40) goTo(current - 1);
-    else if (diff < -40) goTo(current + 1);
+    if (diff > 40) { goTo(current - 1); restartAutoplay(); }
+    else if (diff < -40) { goTo(current + 1); restartAutoplay(); }
   });
 }
 
